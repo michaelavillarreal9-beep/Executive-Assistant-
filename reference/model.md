@@ -1,6 +1,6 @@
 # The Model: Synthesis of the Source PDFs
 
-**Status:** Phase 0 draft. **Awaiting approval.** No architecture or code has been written.
+**Status:** Phase 0 approved. Your answers to the open questions are recorded in §7. Architecture: `reference/architecture.md`.
 
 **Sources** (per-PDF notes are in `reference/notes/`):
 - **[A]** *Agent Stack: Email Triage and Priority Scoring Design*, 8 pp., Oct 14 2026
@@ -169,3 +169,25 @@ Does that work, or do you have a real goal in mind?
 **G13. Privacy of this repo.** The notes mention case names already present in A (e.g. "Fox Plaza rent NSF"). If the GitHub repo is or may become public, I'll replace them with neutral IDs. Is it private?
 
 **G14. Model metric thresholds** are "starting values to calibrate" [A p.1]. I'll use them as-is for pass/fail.
+
+---
+
+## 7. Your decisions (2026-10-14)
+
+These override the PDFs wherever they differ. Each override is listed so it stays traceable.
+
+| # | Question | Your answer | Effect on the model |
+|---|---|---|---|
+| R1 (G1) | Where does it run? | **Inside Runable.** | Runable is the hub: the state database, the screens and your buttons [B pp.6-8]. This repo holds the logic, rules, tests, prompts, memory and the Runable build spec. |
+| R2 (G2) | Real or test email? | **Read-only real email.** | **Overrides A p.3** ("nothing is pasted into Claude"), with your approval. A's storage limits still apply to everything saved [A p.3]. Nothing is sent, drafted in Gmail, labelled, moved or deleted. |
+| R3 (G3) | How do you approve? | **Simple commands you run yourself.** | Approve, Decline, Done and Reopen are buttons or commands in Runable that only you can press [B p.11; A p.1]. I have no Runable login, so I cannot fake them. |
+| R4 (G4) | Who does the thinking? | **Claude, in-session.** | Claude replaces Gemini as the Sensor role [B p.8]. No API spend. |
+| R5 (G8) | Demo goal | **Run email → all pending items (no limit) → track what's completed each week.** | **Overrides the Rule of 3** [A p.7; B p.5] for the pending list: every pending item is shown, ranked by A's score. Adds a weekly completed report, built on B's Sunday routine and `date_closed` [B p.9, p.11]. |
+| R6 (G13) | Repo privacy | **Private, but keep it neutral.** | Committed files use area codes, IDs and neutral descriptions, with no personal names. Detailed text lives in Runable only. |
+
+**Still open** (my defaults are noted; please object if needed):
+- **G9:** I'm treating "owned by Michael" as `assigned_to = MICHAEL`. Deadlines with no time are treated as end of day, America/Los_Angeles. **Uncertain.**
+- **G10:** I'm keeping both hash types, scoped separately.
+- **G11:** I'm keeping B's escalation clocks, counted in calendar days.
+- **G12:** I'm not reconstructing B's truncated prompt text.
+- **G14:** I'm using A's thresholds as written.

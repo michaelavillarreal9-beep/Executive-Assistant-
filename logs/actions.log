@@ -7,3 +7,6 @@
 2026-10-14T18:55Z | P0 | wrote reference/notes/A_*.md, reference/notes/B_*.md, reference/model.md | Phase 0 deliverables
 2026-10-14T18:58Z | P0 | scripted re-check of A p7 worked example | confirm claim in model.md; new 9.25/6.35/6.2/6.0, old 2.5/2.25/3.5/11.0/4.5 all match
 2026-10-14T19:00Z | P0 | git commit + push to claude/adoring-pasteur-7h8wms | persist Phase 0 deliverables
+2026-10-14T19:20Z | P1 | recorded user decisions R1-R6 in reference/model.md §7 | user answered G1-G4, G8, G13
+2026-10-14T19:21Z | P1 | web search "Runable AI agent platform..." | learn what Runable can run before designing around it; found app builder w/ DB+auth, no public API/cron docs found
+2026-10-14T19:35Z | P1 | wrote reference/architecture.md; commit + push | Phase 1 proposal for user approval
