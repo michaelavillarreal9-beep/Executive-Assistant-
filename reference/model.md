@@ -189,6 +189,8 @@ These override the PDFs wherever they differ. Each override is listed so it stay
 | R8 | Top-3 marker | **No.** | The full pending list is ranked with no top-3 marker. |
 | R9 | Run cadence | **Do one same day, then every 7 days.** | Run 1 covers today's email. Later runs are every 7 days. |
 | R10 | Correction time | **Yes, about 10 minutes.** | Your Run 1 corrections are the labels for Run 2's comparison. |
+| R11 | Weekly cadence | **Saturdays.** | Each Saturday, one combined run does email plus the weekly review. This replaces B's Sunday planning day [B p.11]. |
+| R12 | Thin test data | **Widen the window if needed.** | If Run 1 has too few items for the comparison to mean anything, I'll say so and use a few days instead. |
 
 **Still open** (my defaults are noted; please object if needed):
 - **G9:** I'm treating "owned by Michael" as `assigned_to = MICHAEL`. Deadlines with no time are treated as end of day, America/Los_Angeles. **Uncertain.**

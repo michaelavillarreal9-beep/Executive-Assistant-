@@ -1,0 +1,5 @@
+# Real email data never leaves the container (A p.3; R6)
+exchange/
+memory/working/
+__pycache__/
+*.pyc

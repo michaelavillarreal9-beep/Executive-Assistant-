@@ -1,0 +1,47 @@
+#!/usr/bin/env python3
+"""Small command entry point. Phase 2: `status`, `test` and `log`. Later phases add run-email, weekly, eval."""
+import subprocess
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+
+from core.dispatch import Dispatcher  # noqa: E402
+from core.memory import Memory  # noqa: E402
+
+
+def status() -> int:
+    m = Memory(Dispatcher(ROOT, phase="CLI"))
+    print("Knowledge index:")
+    for name, tags, summary in m.index() or [("(empty)", [], "")]:
+        print(f"  {name:<18} [{', '.join(tags)}] {summary}")
+    eps = m.episodes()
+    print(f"\nEpisodes: {len(eps)}" + (f" (latest {eps[-1]})" if eps else ""))
+    fails = m.d._failures()
+    print("Steps waiting on a check-in: " + (", ".join(f"{k} ({v})" for k, v in fails.items() if v >= 3) or "none"))
+    return 0
+
+
+def test() -> int:
+    return subprocess.call([sys.executable, "-m", "unittest", "discover", "-s", "tests", "-t", "."], cwd=ROOT)
+
+
+def log() -> int:
+    """bin/ea log "<action>" "<reason>": manual entries get the real clock time."""
+    if len(sys.argv) < 4:
+        print('usage: bin/ea log "<action>" "<reason>" [phase]')
+        return 2
+    phase = sys.argv[4] if len(sys.argv) > 4 else "MANUAL"
+    Dispatcher(ROOT, phase=phase).log(sys.argv[2], sys.argv[3])
+    return 0
+
+
+COMMANDS = {"status": status, "test": test, "log": log}
+
+if __name__ == "__main__":
+    cmd = sys.argv[1] if len(sys.argv) > 1 else "status"
+    if cmd not in COMMANDS:
+        print(f"usage: bin/ea [{'|'.join(COMMANDS)}]")
+        sys.exit(2)
+    sys.exit(COMMANDS[cmd]())

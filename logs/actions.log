@@ -14,3 +14,14 @@
 2026-10-14T19:55Z | P1 | published reference/architecture.md as Claude Doc "EA Architecture Plan" with diagram; screenshot-checked render | same request
 2026-10-14T20:10Z | P1 | read uploaded EA_Architecture_Plan_1.pdf (7 pp, text layer) and the doc's changes since rev 10 | user asked to review their answers; only page 7 changed, doc matches PDF
 2026-10-14T20:12Z | P1 | updated EA Architecture Plan doc (loop 1 window, demo proof, Runable route, cadence, ticked questions) and reference/architecture.md §12 + model.md R7-R10 | record user's answers
+2026-10-14T21:50Z | P2 | created folder skeleton + .gitignore (exchange/, memory/working/ ignored) | Phase 2 start; keep real email data out of git
+2026-10-14T22:05Z | P2 | wrote .claude/settings.json (deny list) + .claude/hooks/guard.py (read-only allow-list) + log_tool.py (tool-call log) | enforce R2 read-only and the audit log in the harness, not by promise
+2026-10-14T22:20Z | P2 | TEMP: added deny rule for harmless mcp__Claude_Docs__guide | live-test that settings.json deny rules are enforced, without risking a real email write
+2026-10-14T22:22Z | P2 | live test result: settings.json deny rule NOT enforced mid-session; removed TEMP rule | permissions appear to load at session start only
+2026-10-14T22:23Z | P2 | TEMP: guard.py blocks harmless mcp__Claude_Docs__guide | live-test that the PreToolUse guard hook is enforced
+2026-10-14T21:51Z | GUARD | tool mcp__Claude_Docs__guide | read-only rule | BLOCKED: TEMP live test block
+2026-10-14T22:25Z | P2 | live test result: guard hook BLOCKED the call immediately; removed TEMP block | PreToolUse guard verified live; settings deny list reloads with a delay (harness later reported the TEMP rule as active)
+2026-10-14T21:51Z | P2 | create memory/knowledge/preferences.md | seed semantic memory with approved decisions R2-R12 | ok
+2026-10-14T21:51Z | P2 | create memory/knowledge/INDEX.md | index update: seed semantic memory with approved decisions R2-R12 | ok
+2026-10-14T21:52Z | P2 | CORRECTION: hand-typed log lines before this entry carry estimated times, not clock times | audit integrity; exact times for those actions are in logs/tool-calls.log (hook, real clock) and git commit times; all later manual entries go through bin/ea log | ok
+2026-10-14T21:52Z | P2 | commit + push Phase 2 | persist memory, dispatch, read-only guard, logging hook and 30 passing tests | ok

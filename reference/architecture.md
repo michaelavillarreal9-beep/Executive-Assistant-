@@ -1,6 +1,6 @@
 # Architecture (Phase 1 proposal)
 
-**Status:** **awaiting your approval.** Your answers to the four questions are recorded in §12. No code has been written yet.
+**Status:** **approved 2026-10-14.** Your answers are recorded in §12. Phase 2 is in progress.
 
 **How to read the citations:** each section traces back to `reference/model.md`:
 - `P#` points to a principle in §3
@@ -66,7 +66,7 @@ Your buttons: **Approve, Decline, Done, Reopen, Reclassify, Dismiss ("not mine")
 - Every click is logged with you as the actor [B p.10].
 - **Your corrections are the system's teacher.** Each Reclassify, Dismiss or Add counts as a label [A p.3, p.6].
 
-### Loop 3: "Weekly review" (Sunday, per B p.11)
+### Loop 3: "Weekly review" (Saturdays, combined with that week's email run. You moved it from B p.11's Sunday.)
 - **Completed this week**, by area, with counts and the dates each item was closed.
 - **Still open**, with age and anything that slipped past its deadline.
 - **Comparison with last week:** items closed, items opened, net change.
@@ -218,3 +218,5 @@ Runable builds full-stack web apps with a database and logins. **I could not fin
 | Mark the top 3 at the head of the pending list? | No | The full pending list is ranked, with no top-3 marker. This overrides the Rule of 3 [A p.7; B p.5]. |
 | Is a 7-day look-back right for the first run? | Do one same day, then every 7 days | Run 1 covers today's email only. After that, runs are every 7 days, each covering the 7 days since the last run. |
 | Can you spend about 10 minutes correcting Run 1? | Yes | Your corrections are the labels for the before/after comparison. |
+| Thin same-day test? | Go with the recommendation | If one day has too few items for a meaningful before/after comparison, I'll say so and widen the window to a few days. |
+| When is the weekly review? | **Saturdays** | One combined weekly run every Saturday: read the email since the last run, then the weekly review. Run 1 is today (Wed Oct 14). |

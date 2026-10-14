@@ -1,0 +1,15 @@
+2026-10-14T21:50:20Z | Write | content=<2357 chars>; file_path=/home/user/Executive-Assistant-/tests/test_ids.py
+2026-10-14T21:50:27Z | Write | content=<1954 chars>; file_path=/home/user/Executive-Assistant-/tests/test_redact.py
+2026-10-14T21:50:43Z | Write | content=<5483 chars>; file_path=/home/user/Executive-Assistant-/tests/test_dispatch_memory.py
+2026-10-14T21:50:54Z | Write | content=<3995 chars>; file_path=/home/user/Executive-Assistant-/tests/test_hooks.py
+2026-10-14T21:50:58Z | Bash | command=python3 -m unittest discover -s tests -t . 2>&1 / tail -25; description=Run the unit test suite
+2026-10-14T21:51:05Z | Bash | command=python3 - <<'EOF' for p in [".claude/hooks/guard.py", ".claude/hooks/log_tool.py"]: s = open(p).read() old = 'ROOT = os.environ.get("CLAUDE_PROJECT_DIR") or os…; description=Fix hook import root and rerun tests
+2026-10-14T21:51:09Z | Bash | command=ls -la logs/ && tail -5 logs/tool-calls.log 2>/dev/null // echo "no tool-calls.log yet"; description=Check whether the logging hook is live
+2026-10-14T21:51:27Z | Bash | command=python3 - <<'EOF' import json p=".claude/settings.json"; s=json.load(open(p)) s["permissions"]["deny"].append("mcp__Claude_Docs__guide") json.dump(s,open(p,"w"…; description=Temporarily deny a harmless tool for a live test
+2026-10-14T21:51:27Z | mcp__Claude_Docs__guide | items=<17 chars>
+2026-10-14T21:51:37Z | Bash | command=python3 - <<'EOF' import json p=".claude/settings.json"; s=json.load(open(p)) s["permissions"]["deny"].remove("mcp__Claude_Docs__guide") json.dump(s,open(p,"w"…; description=Revert temp deny rule; add temp guard test
+2026-10-14T21:51:47Z | Bash | command=python3 - <<'EOF' p=".claude/hooks/guard.py"; g=open(p).read() t=' if tool_name == "mcp__Claude_Docs__guide": # TEMP live test\n return "TEMP live test block"\…; description=Remove temp guard block and rerun tests
+2026-10-14T21:51:54Z | Write | content=<1333 chars>; file_path=/home/user/Executive-Assistant-/bin/ea
+2026-10-14T21:51:59Z | Bash | command=chmod +x bin/ea && python3 - <<'EOF' import sys; sys.path.insert(0,".") from core.dispatch import Dispatcher from core.memory import Memory m = Memory(Dispatch…; description=Seed preferences via memory module; run status
+2026-10-14T21:52:08Z | Bash | command=python3 - <<'EOF' p="bin/ea"; s=open(p).read() s=s.replace('COMMANDS = {"status": status, "test": test}','''def log() -> int: """bin/ea log "<action>" "<reason…; description=Add clock-stamped log command; log correction
+2026-10-14T21:52:11Z | Bash | command=bin/ea test 2>&1 / tail -2 && git status --short && git diff --stat HEAD / tail -1 && grep -rn "exchange\/working" .gitignore; description=Run tests and review pending changes
