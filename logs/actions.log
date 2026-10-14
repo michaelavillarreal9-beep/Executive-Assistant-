@@ -1,0 +1,9 @@
+# Action log: one line per action. Format: <UTC timestamp> | <phase> | <action> | <reason>
+2026-10-14T18:40Z | P0 | inspected empty repo on branch claude/adoring-pasteur-7h8wms | establish starting state
+2026-10-14T18:41Z | P0 | pdfinfo/pdftotext on both PDFs | detect text layer; A has text, B has none (Microsoft Print to PDF, vector glyphs)
+2026-10-14T18:42Z | P0 | read PDF A pages 1-8 via pdftotext -layout, page by page | full text + tables; no figures present
+2026-10-14T18:44Z | P0 | read PDF B pages 1-18 visually (rendered page images) | no text layer, no OCR engine installed; visual read covers text, tables, diagram (p7)
+2026-10-14T18:50Z | P0 | recomputed A p7 worked example with A p6-7 formula and B p11 SQL formula | verify source arithmetic before relying on it; all 10 values match
+2026-10-14T18:55Z | P0 | wrote reference/notes/A_*.md, reference/notes/B_*.md, reference/model.md | Phase 0 deliverables
+2026-10-14T18:58Z | P0 | scripted re-check of A p7 worked example | confirm claim in model.md; new 9.25/6.35/6.2/6.0, old 2.5/2.25/3.5/11.0/4.5 all match
+2026-10-14T19:00Z | P0 | git commit + push to claude/adoring-pasteur-7h8wms | persist Phase 0 deliverables
