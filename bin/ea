@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Small command entry point. Phase 2: `status`, `test` and `log`. Later phases add run-email, weekly, eval."""
+"""Small command entry point. Phase 2: `status`, `test`, `log` and `archive-logs` (run before each commit). Later phases add run-email, weekly, eval."""
 import subprocess
 import sys
 from pathlib import Path
@@ -37,7 +37,22 @@ def log() -> int:
     return 0
 
 
-COMMANDS = {"status": status, "test": test, "log": log}
+def archive_logs() -> int:
+    """Move the live tool-call log (gitignored, written by the hook) into the committed archive.
+
+    The hook logs each call after it finishes, so a tracked live log would always be one
+    line ahead of the last commit. Archiving before each commit keeps the audit trail in git.
+    """
+    live, archive = ROOT / "logs" / "tool-calls.log", ROOT / "logs" / "tool-calls-archive.log"
+    if not live.exists() or not live.read_text(encoding="utf-8"):
+        return 0
+    with open(archive, "a", encoding="utf-8") as fh:
+        fh.write(live.read_text(encoding="utf-8"))
+    live.write_text("", encoding="utf-8")
+    return 0
+
+
+COMMANDS = {"status": status, "test": test, "log": log, "archive-logs": archive_logs}
 
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "status"

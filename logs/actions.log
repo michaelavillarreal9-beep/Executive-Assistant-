@@ -25,3 +25,4 @@
 2026-10-14T21:51Z | P2 | create memory/knowledge/INDEX.md | index update: seed semantic memory with approved decisions R2-R12 | ok
 2026-10-14T21:52Z | P2 | CORRECTION: hand-typed log lines before this entry carry estimated times, not clock times | audit integrity; exact times for those actions are in logs/tool-calls.log (hook, real clock) and git commit times; all later manual entries go through bin/ea log | ok
 2026-10-14T21:52Z | P2 | commit + push Phase 2 | persist memory, dispatch, read-only guard, logging hook and 30 passing tests | ok
+2026-10-14T21:53Z | P2 | untrack live tool-call log; add archive-logs | hook appends after each call, so a tracked live log is always dirty after a commit; archive is committed instead | ok

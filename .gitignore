@@ -3,3 +3,4 @@ exchange/
 memory/working/
 __pycache__/
 *.pyc
+logs/tool-calls.log
