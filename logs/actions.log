@@ -10,3 +10,5 @@
 2026-10-14T19:20Z | P1 | recorded user decisions R1-R6 in reference/model.md §7 | user answered G1-G4, G8, G13
 2026-10-14T19:21Z | P1 | web search "Runable AI agent platform..." | learn what Runable can run before designing around it; found app builder w/ DB+auth, no public API/cron docs found
 2026-10-14T19:35Z | P1 | wrote reference/architecture.md; commit + push | Phase 1 proposal for user approval
+2026-10-14T19:50Z | P1 | published reference/model.md + notes as Claude Doc "EA Model Synthesis" (3 tabs) | user asked to turn the md files into artifacts
+2026-10-14T19:55Z | P1 | published reference/architecture.md as Claude Doc "EA Architecture Plan" with diagram; screenshot-checked render | same request
