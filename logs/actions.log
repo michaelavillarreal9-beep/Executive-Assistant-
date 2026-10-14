@@ -12,3 +12,5 @@
 2026-10-14T19:35Z | P1 | wrote reference/architecture.md; commit + push | Phase 1 proposal for user approval
 2026-10-14T19:50Z | P1 | published reference/model.md + notes as Claude Doc "EA Model Synthesis" (3 tabs) | user asked to turn the md files into artifacts
 2026-10-14T19:55Z | P1 | published reference/architecture.md as Claude Doc "EA Architecture Plan" with diagram; screenshot-checked render | same request
+2026-10-14T20:10Z | P1 | read uploaded EA_Architecture_Plan_1.pdf (7 pp, text layer) and the doc's changes since rev 10 | user asked to review their answers; only page 7 changed, doc matches PDF
+2026-10-14T20:12Z | P1 | updated EA Architecture Plan doc (loop 1 window, demo proof, Runable route, cadence, ticked questions) and reference/architecture.md §12 + model.md R7-R10 | record user's answers

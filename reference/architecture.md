@@ -1,6 +1,6 @@
 # Architecture (Phase 1 proposal)
 
-**Status:** **awaiting your approval.** No code has been written yet.
+**Status:** **awaiting your approval.** Your answers to the four questions are recorded in §12. No code has been written yet.
 
 **How to read the citations:** each section traces back to `reference/model.md`:
 - `P#` points to a principle in §3
@@ -52,12 +52,12 @@
 ### Loop 1: "Run email" (you say it, or later on a schedule)
 1. **Remember.** Read `memory/knowledge/INDEX.md`, the last 3 episodes and the relevant skills. State my confidence and what I don't know (capability 8).
 2. **Catch up.** Load the latest Runable export, so I know what you finished, approved or corrected since the last run.
-3. **Read email (read-only).** Fetch threads since the last run. The first run looks back 7 days.
+3. **Read email (read-only).** The first run covers today's email only. After that, a run every 7 days covers the 7 days since the last run (§12).
 4. **Split and classify.** One row per ask [A p.1]. Code computes the features [A p.2]. I add the summary, the requested action and any extra gates.
 5. **Validate.** Code enforces the gate rules: money or client items can never be junk, and a deadline within 72h becomes a computed gate [A p.2]. Confidence is derived from the evidence, not self-reported [A p.3]. Anything failing validation is set aside and reported, never silently dropped.
 6. **Dedupe** against items that already exist, using the intent hash [A p.4; B p.9].
 7. **Spot finished work.** If an email shows something is resolved (you replied, a receipt arrived, the other party confirmed), the item is marked **"Looks done? (evidence: …)"**. Only you close it.
-8. **Rank everything pending.** Use A's score [A p.6-7], with **no top-3 limit** (R5). Waiting-on-others items go in their own list with a follow-up date [A p.6]. Near-ties are flagged [A p.7].
+8. **Rank everything pending.** Use A's score [A p.6-7], with **no top-3 limit** and no top-3 marker (R5, §12). Waiting-on-others items go in their own list with a follow-up date [A p.6]. Near-ties are flagged [A p.7].
 9. **Hand off** a JSON file for Runable, plus a readable pending list in chat.
 10. **Critic pass.** Grade the run on A's metrics against your past corrections. Write one episode and one lesson. Propose at most one improvement, which is tested before it is used (§6).
 
@@ -152,10 +152,10 @@ The **safe-change routine** [A p.8]:
 5. It rolls back automatically if a later run gets worse.
 
 **Demo proof (Phases 4-5):**
-1. Run 1 on the last 7 days of email.
+1. Run 1 on today's email.
 2. You spend about 10 minutes correcting it in Runable.
 3. The critic learns from your corrections.
-4. Run 2 on the same 7 days.
+4. Run 2 on the same day's email.
 5. A before/after table on A's metrics, taken from the logs and memory files.
 
 ## 7. Roles (`agents/`)
@@ -187,9 +187,9 @@ Runable builds full-stack web apps with a database and logins. **I could not fin
 - **(a) CSV export.** You click Export and upload the file here.
 - **(b) Automatic backup.** Runable saves a nightly backup to a Drive folder [B p.8], which I read (read-only).
 
-**Recommendation:** start with the file import and CSV export for the demo, then upgrade once we've confirmed what your Runable app supports. `runable/BUILD_SPEC.md` will be the text you paste into Runable's agent to build the app.
+**Decision:** you confirmed your Runable app can import a file and export a CSV, so that is the route (§12). The ingest address and the Drive backup stay optional upgrades. `runable/BUILD_SPEC.md` will be the text you paste into Runable's agent to build the app.
 
-**Later and optional:** a daily scheduled Claude session at about 5 AM [B p.8] that runs "Run email" and saves memory. This only happens with your OK.
+**Later and optional:** a scheduled Claude session every 7 days that runs "Run email" and saves memory. This only happens with your OK.
 
 ## 10. Your 8 capabilities → where they live
 
@@ -209,3 +209,12 @@ Runable builds full-stack web apps with a database and logins. **I could not fin
 - **Phase 2:** memory, dispatch and logging, the read-only settings, `ids`, `redact`, and tests.
 - **Phase 3:** gates, confidence, scoring, metrics and weekly modules; the role prompts; the Runable build spec; tests that reproduce A's worked example and the neutral golden set.
 - **Phases 4-6:** the demo runs, the before/after comparison, and the README.
+
+## 12. Your answers (2026-10-14)
+
+| Question | Answer | Effect |
+|---|---|---|
+| Can your Runable app import a file and export a CSV? | Yes | File import in, CSV export out. No API is assumed. |
+| Mark the top 3 at the head of the pending list? | No | The full pending list is ranked, with no top-3 marker. This overrides the Rule of 3 [A p.7; B p.5]. |
+| Is a 7-day look-back right for the first run? | Do one same day, then every 7 days | Run 1 covers today's email only. After that, runs are every 7 days, each covering the 7 days since the last run. |
+| Can you spend about 10 minutes correcting Run 1? | Yes | Your corrections are the labels for the before/after comparison. |

@@ -185,6 +185,11 @@ These override the PDFs wherever they differ. Each override is listed so it stay
 | R5 (G8) | Demo goal | **Run email → all pending items (no limit) → track what's completed each week.** | **Overrides the Rule of 3** [A p.7; B p.5] for the pending list: every pending item is shown, ranked by A's score. Adds a weekly completed report, built on B's Sunday routine and `date_closed` [B p.9, p.11]. |
 | R6 (G13) | Repo privacy | **Private, but keep it neutral.** | Committed files use area codes, IDs and neutral descriptions, with no personal names. Detailed text lives in Runable only. |
 
+| R7 | Runable import/export | **Yes, it can import a file and export a CSV.** | The file route is used. No Runable API is assumed. |
+| R8 | Top-3 marker | **No.** | The full pending list is ranked with no top-3 marker. |
+| R9 | Run cadence | **Do one same day, then every 7 days.** | Run 1 covers today's email. Later runs are every 7 days. |
+| R10 | Correction time | **Yes, about 10 minutes.** | Your Run 1 corrections are the labels for Run 2's comparison. |
+
 **Still open** (my defaults are noted; please object if needed):
 - **G9:** I'm treating "owned by Michael" as `assigned_to = MICHAEL`. Deadlines with no time are treated as end of day, America/Los_Angeles. **Uncertain.**
 - **G10:** I'm keeping both hash types, scoped separately.
